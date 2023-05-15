@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Todo } from 'src/app/models/todo';
+import { DataManagerService } from 'src/app/services/data-manager/data-manager.service';
 
 @Component({
   selector: 'app-todo-add',
@@ -8,13 +9,12 @@ import { Todo } from 'src/app/models/todo';
 })
 export class TodoAddComponent {
 
-  newTodo: Todo = {title: '', description: '', priority: 1}; // in questo caso usiamo un modello di default e NON il "?"
+  newTodo: Todo = {title: '', description: '', priority: 1};
 
-  @Output() todoCreated: EventEmitter<Todo> = new EventEmitter();
+  constructor(private dataManagerServ: DataManagerService){}
 
   saveTodo(){
-    console.log(this.newTodo);
-    this.todoCreated.emit({...this.newTodo}); // facciamo un clone perché sennò gli input di add todo rimangono collegati
-  };
+    this.dataManagerServ.addTodo({...this.newTodo});
+  }
 
 }

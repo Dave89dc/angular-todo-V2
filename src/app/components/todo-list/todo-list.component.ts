@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { Todo } from 'src/app/models/todo';
+import { Component } from '@angular/core';
+
+import { DataManagerService } from 'src/app/services/data-manager/data-manager.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -8,12 +9,8 @@ import { Todo } from 'src/app/models/todo';
 })
 export class TodoListComponent {
 
-  // @inport dice "questa proprietà può essere riempita dall'html, tramite una proprietà"
-  @Input() todoArray: Todo[] = []; // invece di "?" lo inizializziamo come array vuoto di default
+  constructor(public dataManagerServ: DataManagerService){
 
-  deleteTodo(todoToDelete: Todo){
-    console.log('Devo cancelare: ', todoToDelete.title);
-    this.todoArray = this.todoArray.filter(todo => todo.title !== todoToDelete.title);
-  };
+  }
 
 }
