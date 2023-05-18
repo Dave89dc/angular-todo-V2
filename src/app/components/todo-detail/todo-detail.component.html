@@ -1,7 +1,17 @@
 <!-- se c'è todoDetails, in alternativa si toglie l'ngIf
   e si mette il "?" in todoDetail?.title e todoDetail?.description -->
-<li *ngIf="todoDetail" class="priority{{todoDetail.priority}}">
+<!-- <li *ngIf="todoDetail" class="priority{{todoDetail.priority}}">
   <h3>{{todoDetail.title}}</h3>
   <span>{{todoDetail.description}}</span>
   <button (click)="deleteTodo()">Cancella</button>
-</li>
+</li> -->
+
+<mat-card *ngIf="todoDetail">
+  <mat-card-header>
+    <mat-card-title>{{todoDetail.title}}</mat-card-title>
+    <mat-card-subtitle>{{todoDetail?.description}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions align="end">
+    <button mat-button (click)="deleteTodo()">DELETE</button>
+  </mat-card-actions>
+</mat-card>
